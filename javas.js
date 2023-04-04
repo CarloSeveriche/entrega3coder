@@ -42,9 +42,8 @@ function validarFormulario(event){
         let persona = new Persona(nombre, email , numero , IDPersona);
 
         personas.push(persona);
-
-        console.log(personas);
-        formulario.reset()
+        formulario.reset();
+        mostrarPersona();
     }else{
         alert("Ya se encuentra registrada una persona con ese ID")  
     }
@@ -54,7 +53,7 @@ function validarFormulario(event){
 
 function mostrarPersona(){
     contenedorPersonas.innerHTML = "";
-    productos.array.forEach(persona => {
+    personas.forEach(persona => {
 
         let column = document.createElement("div");
         column.className = "columna1";
@@ -76,13 +75,14 @@ function mostrarPersona(){
         </div>
         `
 
-        
+        contenedorPersonas.append(column)
     });
 }
 
 
 function main(){
     inicializarEventos();
+    
 }
 
 main()
