@@ -60,7 +60,20 @@ function mostrarPersona(){
         column.className = "columna1";
         column.id = `columna-${persona.id} `;
         column.innerHTML = `
-        
+        <div class="card">
+            <div class="card__body">
+
+                <p class="card-text">Nombre: ${persona.nombre}</p>
+                <p class="card-text">Email: ${persona.email}</p>
+                <p class="card-text">Número: ${persona.numero}</p>
+                <p class="card-text">ID: ${persona.id}</p>
+            
+            </div>
+
+            <div class="card__footer">
+                <button class="btn btn-red" id="botonEliminar-${persona.id}">Eliminar</button>
+            </div>
+        </div>
         `
 
         
