@@ -7,7 +7,8 @@ let inputNombre = document.getElementById("nombre");
 let inputEmial = document.querySelector("#email");
 let inputNumero = document.getElementById("numero");
 let inputID =  document.querySelector("#id");
-let contenedorPersonas = document.getElementById("contenedorPersonas")
+let contenedorPersonas = document.getElementById("contenedorPersonas");
+let limpiar = document.getElementById("limpiar");
 
 
 class Persona{
@@ -43,12 +44,38 @@ function validarFormulario(event){
 
         personas.push(persona);
         formulario.reset();
+
+        actualizarPersonaStorage();
         mostrarPersona();
+        
     }else{
         alert("Ya se encuentra registrada una persona con ese ID")  
     }
+}
+
+function actualizarPersonaStorage(){
+    let personasJSON = JSON.stringify(personas);
+    localStorage.setItem("personas", personasJSON);
+    
+}
+
+function obtenerPersonaStorage(){
+    let personasJSON = localStorage.getItem("personas");
 
 
+    if(personasJSON !=  null ){
+        personas = JSON.parse(personasJSON)
+        mostrarPersona()
+    }
+
+}
+
+function eliminarPersona(IDPersona){
+    let borrarPersona = document.getElementById(`columna-${IDPersona}`);
+    let indiceBorrar = personas.findIndex( ( persona ) => parseInt(persona.id) === parseInt(IDPersona)); 
+
+    personas.splice(indiceBorrar, 1);
+    borrarPersona.remove();
 }
 
 function mostrarPersona(){
@@ -76,12 +103,17 @@ function mostrarPersona(){
         `
 
         contenedorPersonas.append(column)
+        let botonEliminar = document.getElementById(`botonEliminar-${persona.id}`);
+        botonEliminar.onclick = () => eliminarPersona(persona.id)
+
     });
+
 }
 
 
 function main(){
     inicializarEventos();
+    obtenerPersonaStorage();
     
 }
 

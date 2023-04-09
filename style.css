@@ -27,6 +27,10 @@ main{
 
 }
 
+.columna1{
+    margin: 32px;
+}
+
 
 .formulario{
     display: inline-block;
@@ -83,6 +87,11 @@ label{
 .btn-red{
 
     background-color: rgb(201, 62, 62);
+    padding: 16px;
+    margin: 16px;
+    text-align: center;
+    width: 120px;
+    height: 60px;
 }
 
 
